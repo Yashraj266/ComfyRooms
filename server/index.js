@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
+const punycode = require("punycode");
 
 const authRoutes = require("./routes/auth.js");
 const listingRoutes = require("./routes/listing.js");
@@ -24,8 +25,6 @@ const PORT = 3001;
 mongoose
   .connect(process.env.MONGO_URL, {
     dbName: "comfy_rooms",
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
